@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "derfleischmann.shutdown-timer",
+  "name": "Shutdown Timer",
+  "version": "1.0.0",
+  "author": "derfleischmann",
+  "license": "MIT",
+  "description": "Schedule a shutdown from the bar. One user-scoped systemd timer performs the shutdown; the shell only displays and cancels it.",
+  "kinds": [
+    "service",
+    "bar-widget"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Shutdown Timer",
+    "description": "Schedule a shutdown with presets or a custom number of minutes.",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "notify": true
+    },
+    "schema": [
+      {
+        "key": "notify",
+        "type": "boolean",
+        "label": "Notifications",
+        "description": "Show start, warning, and cancel notifications.",
+        "defaultValue": true
+      }
+    ]
+  }
+}

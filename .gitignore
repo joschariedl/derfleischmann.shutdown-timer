@@ -1,0 +1,4 @@
+*.qmlc
+.qmlcache/
+*~
+node_modules/
