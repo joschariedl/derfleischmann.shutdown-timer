@@ -1,7 +1,5 @@
 # Shutdown Timer
 
-[![CI](https://github.com/joschariedl/derfleischmann.shutdown-timer/actions/workflows/test.yml/badge.svg)](https://github.com/joschariedl/derfleischmann.shutdown-timer/actions/workflows/test.yml)
-
 An Omarchy 4 (Quattro) bar plugin that shuts the machine down after a
 countdown — built so that the countdown, the cancel button, and the actual
 poweroff cannot disagree.
@@ -124,7 +122,6 @@ systemctl --user stop derfleischmann-shutdown-timer.timer
 
 ```bash
 omarchy plugin validate .
-node --test tests/model.test.js
 ```
 
 ## License
