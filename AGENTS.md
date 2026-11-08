@@ -24,15 +24,13 @@ No sudo, no pkexec, no system units, no network, no state file.
 
 - `manifest.json` — id `derfleischmann.shutdown-timer`, kinds `service` and
   `bar-widget`, `keepLoaded: true`, one `notify` boolean setting.
-- `Model.js` — pure functions and the fixed argv builders. Node-testable with
-  `node --test tests/model.test.js`. This is where every safety-relevant
-  decision (duration bounds, command shape, output parsing) lives.
+- `Model.js` — pure functions and the fixed argv builders. This is where every
+  safety-relevant decision (duration bounds, command shape, output parsing)
+  lives.
 - `Service.qml` — singleton state machine: arm/cancel/verify, the 15 s
   reconciliation probe, notifications, IPC.
 - `BarWidget.qml` — bar icon, countdown label, `KeyboardPanel` UI,
   `ConfirmDialog`.
-- `tests/model.test.js` — 13 Node tests; keep them green.
-- `.github/workflows/test.yml` — CI: runs the Node tests on every push/PR.
 
 ## Invariants — breaking these defeats the point of the plugin
 
@@ -184,7 +182,6 @@ Always keep `systemctl --user stop ...` as a backstop in the same test.
 ## Verification checklist
 
 ```bash
-node --test tests/model.test.js     # 13 tests
 omarchy plugin validate .           # manifest + entry points
 omarchy restart shell               # pick up edited files
 omarchy-shell derfleischmann.shutdown-timer status
@@ -216,7 +213,8 @@ Do not reintroduce any of those patterns "for convenience".
 ## Repository / workflow
 
 - Default branch: `main`.
-- `main` is protected: changes land through a pull request, the CI `test` check
-  must pass, force-pushes and deletions are blocked.
+- `main` is protected: changes land through a pull request, force-pushes and
+  deletions are blocked.
+- There is no CI. Validate locally with `omarchy plugin validate .` and the
+  manual checks above before opening a pull request.
 - Keep `README.md` user-facing and this file maintainer-facing.
-- Run the Node tests before pushing; CI runs the same command.
